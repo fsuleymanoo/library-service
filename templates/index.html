@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library Service</title>
-</head>
-<body>
-    <h1>Books</h1>
-</body>
+  </head>
+  <body>
+    <h1>Books API</h1>
+    <code><strong>GET </strong> /api/books/</code> <br />
+    <code>Status code: 200</code><br /><br />
+
+    <code><strong>GET </strong> /api/books/book_id/</code> <br />
+    <code>Required: book_id</code><br />
+    <code>Status code: 200</code><br /><br />
+
+    <code><strong>POST </strong> /api/books</code><br />
+    <code>
+      <span>Headers: Content-Type -> application/json</span><br />
+      <span>Request: </span><br />
+      <span>{</span> <br />
+      <span>"author": string, <i>*required</i></span
+      ><br />
+      <span>"book_id": string, <i>*required</i></span
+      ><br />
+      <span>"genre": string,</span><br />
+      <span>"notes": string,</span><br />
+      <span>"publication_year": intiger,</span><br />
+      <span>"rating": float,</span><br />
+      <span>"read_status": string,</span><br />
+      <span>"title": string <i>*required</i></span
+      ><br />
+      <span>}</span><br />
+      Status code: 201 Created</code
+    ><br /><br />
+
+    <code><strong>PUT </strong> /api/books/book_id</code><br />
+    <code>
+      <span>Headers: Content-Type -> application/json</span><br />
+      <span>Required: book_id</span><br />
+      <span>Request: </span><br />
+      <span>{</span> <br />
+      <span>"author": string,</span><br />
+      <span>"book_id": string,</span><br />
+      <span>"genre": string,</span><br />
+      <span>"notes": string,</span><br />
+      <span>"publication_year": intiger,</span><br />
+      <span>"rating": float,</span><br />
+      <span>"read_status": string,</span><br />
+      <span>"title": string</span><br />
+      <span>}</span><br />
+      Status code: 200</code
+    ><br /><br />
+
+    <code><strong>DELETE </strong> /api/books/book_id</code><br />
+    <code>
+      <span>Required: book_id</span><br />
+      Status code: 200</code
+    ><br />
+  </body>
 </html>
