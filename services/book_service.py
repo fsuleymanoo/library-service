@@ -69,11 +69,19 @@ class BookService:
 
         book_data.append(new_book)
         return book_data
-    
+
+    @staticmethod
+    def update_book(book_id):
+        for book in book_data:
+            if book.book_id == book_id:
+                book_data.update(book)
+                return True, book_data
+        return False, None
+
     @staticmethod
     def delete_book(book_id):
         for book in book_data:
             if book.book_id == book_id:
                 book_data.remove(book)
                 return True, book_data
-        return False, None    
+        return False, None
