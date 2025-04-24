@@ -42,7 +42,7 @@ class BookService:
         if not isinstance(data.get("publication_year"), int):
             return {"publication_year": "publication_year should be a intiger"}
 
-        if not data.get("book_id").startswith("B"):
+        if not data.get("book_id").startswith("B_"):
             return {"book_id": f"book_id {data.get("book_id")} should starts with B_"}
 
         valid_status = ["read", "reading", "to-read"]
@@ -70,13 +70,13 @@ class BookService:
         book_data.append(new_book)
         return book_data
 
-    @staticmethod
-    def update_book(book_id):
-        for book in book_data:
-            if book.book_id == book_id:
-                book_data.update(book)
-                return True, book_data
-        return False, None
+    # @staticmethod
+    # def update_book(book_id):
+    #     for book in book_data:
+    #         if book.book_id == book_id:
+    #             book_data.update(book)
+    #             return True, book_data
+    #     return False, None
 
     @staticmethod
     def delete_book(book_id):
