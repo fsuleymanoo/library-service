@@ -35,17 +35,17 @@ def add_product():
     return jsonify(response), 201
 
 
-# @book_bp.route("/api/books/<string:book_id>", methods=["PUT"])
-# def update_book(book_id):
-#     new_data = request.json
-#     if not new_data:
-#         return jsonify({"error": "The payload cannot be empty"}), 400
+@book_bp.route("/books/<string:book_id>", methods=["PUT"])
+def update_book(book_id):
+    new_data = request.json
+    if not new_data:
+        return jsonify({"error": "The payload cannot be empty"}), 400
 
-#     success, updated_book = BookService.update_book(book_id)
-#     if success:
-#         return jsonify({"status": "Book successfully updated", "book": updated_book}), 200
+    success, updated_book = BookService.update_book(book_id, new_data)
+    if success:
+        return jsonify({"status": "Book successfully updated", "book": updated_book}), 200
 
-#     return jsonify({"error": f"Book not found with book_id {book_id}"}), 404
+    return jsonify({"error": f"Book not found with book_id {book_id}"}), 404
 
 
 @book_bp.route("/books/<string:book_id>", methods=["DELETE"])

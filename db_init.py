@@ -10,7 +10,7 @@ def create_tables():
         cur = conn.cursor()
         cur.execute(""" 
             CREATE TABLE IF NOT EXISTS books (
-                book_id SERIAL PRIMARY KEY,
+                book_id VARCHAR(64) UNIQUE NOT NULL,
                 author VARCHAR(64) NOT NULL,
                 genre VARCHAR(64) NOT NULL,
                 notes VARCHAR(255), 
