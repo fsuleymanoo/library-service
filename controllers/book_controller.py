@@ -43,7 +43,7 @@ def update_book(book_id):
 
     success, updated_book = BookService.update_book(book_id, new_data)
     if success:
-        return jsonify({"status": "Book successfully updated", "book": updated_book}), 200
+        return jsonify({"status": "Book successfully updated", "book": updated_book.to_dict()}), 200
 
     return jsonify({"error": f"Book not found with book_id {book_id}"}), 404
 

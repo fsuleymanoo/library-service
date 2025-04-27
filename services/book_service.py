@@ -17,7 +17,6 @@ class BookService:
         book = BookRepository.get_book_by_book_id(book_id)
         return Book(**book) if book else None
 
-
     @staticmethod
     def create_book(data: dict):
 
@@ -76,28 +75,24 @@ class BookService:
 
     @staticmethod
     def update_book(book_id, data):
-        book = BookRepository.get_book_by_book_id(book_id)
-        if not book:
-            return False, None
-        
-        new_book = Book(
-            book_id=book_id,
-            author=data.get("author"),
-            title=data.get("title"),
-            publication_year=data.get("publication_year"),
-            rating=data.get("rating"),
-            read_status=data.get("read_status"),
-            genre=data.get("genre"),
-            notes=data.get("notes")
-        )
+        existing_book = BookRepository.get_book_by_book_id(book_id)
+        if not existing_book:
+            return False, {"error": f"Book not found with book_id {book_id}"}
 
-        updated_book = BookRepository.update_book(book_id, new_book)
-        return True, updated_book if updated_book else False, None
-   
+        try:
+            updated_data = {**existing_book, **data}
+            book = Book(**updated_data)
+        
+            updated = BookRepository.update_book(book_id, book)
+            if updated:
+                return True, Book(**updated)
+            return False, {"error": "Update failed"}
+        except Exception as e:
+            print(f"Error updating book: {e}")
+            return False, {"error": str(e)}
 
     @staticmethod
     def delete_book(book_id):
         deleted = BookRepository.delete_book(book_id)
         books = BookRepository.get_all_books()
         return True, [Book(**b) for b in books]
-

@@ -62,8 +62,9 @@ class BookRepository:
                 book.created_at,
                 book_id
             ))
+            updated = cursor.fetchone()
             connection.commit()
-            return cursor.fetchone()
+            return updated
         
 
     @staticmethod
